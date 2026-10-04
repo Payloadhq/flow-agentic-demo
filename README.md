@@ -87,7 +87,10 @@ Endpoints: `GET /v1/quote?symbol=XYZ` (paid), `GET /.well-known/x402` (agent dis
 
 ## Deploy
 
-Push to `main` deploys to Fly.io via GitHub Actions (same pattern as `Payloadhq/payload-rail`). **Before the first deploy, the owner must add the `FLY_API_TOKEN` secret** in the repo's Settings → Secrets → Actions.
+Push to `main` deploys to Fly.io via GitHub Actions (same pattern as `Payloadhq/payload-rail`). Two owner steps before the first deploy:
+
+1. Add `.github/workflows/deploy.yml` to the repo (one file — the automation token cannot push workflow files; the file is ready in the build workspace).
+2. Add the `FLY_API_TOKEN` secret in the repo's Settings → Secrets → Actions.
 
 ## Tests
 

@@ -100,6 +100,10 @@ npm test   # 14 tests: x402 verifier unit tests, split-math conservation, mocked
 
 No live-network tests in CI. The loop test mocks the Rail client; the verifier tests use the HMAC dev path.
 
+## Links
+
+- Telegram: https://t.me/PAYLOADTOOLS
+
 ## License
 
 MIT.

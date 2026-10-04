@@ -2,7 +2,7 @@
 
 The agentic commerce loop, working end to end:
 
-**AI agent discovers a paid API via MCP → pays with x402 → Payload Flow splits the revenue.**
+**AI agent discovers a paid API via MCP → pays with x402 → RevRule splits the revenue.**
 
 ```
 agent --MCP--> get_quote tool --402--> x402 payment (0.01 USDC, Base Sepolia)
@@ -14,7 +14,7 @@ agent --MCP--> get_quote tool --402--> x402 payment (0.01 USDC, Base Sepolia)
 
 - **x402**: pay-per-call micropayments, starter-kit v1.0.4 patterns (vendored verbatim in `vendor/`)
 - **MCP**: the paid API as a discoverable tool (`get_quote`), stdio transport
-- **Payload Flow**: the hosted Rail computes who is owed what; every distribution is `status: "proposed"` — this demo never moves money beyond the x402 settlement to its own wallet
+- **RevRule**: the hosted Rail computes who is owed what; every distribution is `status: "proposed"` — this demo never moves money beyond the x402 settlement to its own wallet
 
 ## Try it (2 minutes, no wallet needed)
 

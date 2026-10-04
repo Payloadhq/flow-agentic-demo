@@ -102,7 +102,7 @@ No live-network tests in CI. The loop test mocks the Rail client; the verifier t
 
 ## Links
 
-- Telegram: https://t.me/PAYLOADTOOLS
+- Telegram: https://t.me/payloadtool
 
 ## License
 

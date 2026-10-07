@@ -109,3 +109,9 @@ No live-network tests in CI. The loop test mocks the Rail client; the verifier t
 ## License
 
 MIT.
+
+---
+
+**More from Payload** · [payloadhq.github.io](https://payloadhq.github.io/) · [all Payload repos](https://github.com/Payloadhq)
+
+Related: [callx402](https://github.com/Payloadhq/callx402) · [x402-paid-api-starter-kit](https://github.com/Payloadhq/x402-paid-api-starter-kit) · [payload-flow](https://github.com/Payloadhq/payload-flow)

@@ -7,14 +7,14 @@
 ```
 agent --MCP--> get_quote tool --402--> x402 payment (0.01 USDC, Base Sepolia)
    --X-PAYMENT--> server verifies settlement --> serves quote
-   --> economic event posted to the Payload Rail
+   --> economic event posted to the RevRule API
    --> Revenue Graph executes: 2% developer, 9.8% referrer, 88.2% operator
    --> entitlements + hash-chained ledger entries returned in the response
 ```
 
 - **x402**: pay-per-call micropayments, starter-kit v1.0.4 patterns (vendored verbatim in `vendor/`)
 - **MCP**: the paid API as a discoverable tool (`get_quote`), stdio transport
-- **RevRule**: the hosted Rail computes who is owed what; every distribution is `status: "proposed"` - this demo never moves money beyond the x402 settlement to its own wallet
+- **RevRule**: the hosted RevRule API computes who is owed what; every distribution is `status: "proposed"` - this demo never moves money beyond the x402 settlement to its own wallet
 
 ## Try it (2 minutes, no wallet needed)
 
@@ -25,7 +25,7 @@ npm run demo:loop
 
 The scripted agent discovers the tool over MCP, gets a `PAYMENT_REQUIRED` challenge, pays (dev-minted payment stands in for the on-chain settlement in this local run), retries, and prints the quote plus the RevRule split with an exact conservation check.
 
-To see the **live** RevRule split, get a Rail API key and graph first:
+To see the **live** RevRule split, get a RevRule API key and graph first:
 
 ```bash
 # 1. Issue a free Rail key (https://payload-rail.fly.dev)
@@ -62,7 +62,7 @@ Endpoints: `GET /v1/quote?symbol=XYZ` (paid), `GET /.well-known/x402` (agent dis
 | `X402_VERIFIER` | `dev` | `dev` (HMAC, local/demo) or `facilitator` (real x402 /verify) |
 | `DEV_SECRET` | demo default | HMAC secret for the dev verifier |
 | `FACILITATOR_VERIFY_URL` | `https://x402.org/facilitator/verify` | Production verifier endpoint |
-| `RAIL_BASE_URL` | `https://payload-rail.fly.dev` | Payload Rail |
+| `RAIL_BASE_URL` | `https://payload-rail.fly.dev` | RevRule API |
 | `RAIL_API_KEY` | - | Server-side only. Never exposed to clients. |
 | `RAIL_GRAPH_ID` | - | Demo Revenue Graph id |
 | `PUBLIC_BASE_URL` | `http://localhost:PORT` | Used in the discovery manifest |
@@ -101,7 +101,7 @@ No live-network tests in CI. The loop test mocks the Rail client; the verifier t
 ## Links
 
 - RevRule engine (MIT): https://github.com/Payloadhq/payload-flow
-- Rail quickstart: https://payloadhq.github.io/flow-rail.html
+- RevRule API quickstart: https://payloadhq.github.io/flow-rail.html
 - Developer portal: https://payloadhq.github.io/
 - Telegram: https://t.me/payloadtool
 - Patreon: https://patreon.com/PayloadTools

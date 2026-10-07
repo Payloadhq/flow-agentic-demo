@@ -1,6 +1,6 @@
-# Flow Agentic Demo
+# Flow Agentic Demo by Payload
 
-The agentic commerce loop, working end to end:
+**A demo by Payload.** The agentic commerce loop, working end to end:
 
 **AI agent discovers a paid API via MCP → pays with x402 → RevRule splits the revenue.**
 
@@ -14,7 +14,7 @@ agent --MCP--> get_quote tool --402--> x402 payment (0.01 USDC, Base Sepolia)
 
 - **x402**: pay-per-call micropayments, starter-kit v1.0.4 patterns (vendored verbatim in `vendor/`)
 - **MCP**: the paid API as a discoverable tool (`get_quote`), stdio transport
-- **RevRule**: the hosted Rail computes who is owed what; every distribution is `status: "proposed"` — this demo never moves money beyond the x402 settlement to its own wallet
+- **RevRule**: the hosted Rail computes who is owed what; every distribution is `status: "proposed"` - this demo never moves money beyond the x402 settlement to its own wallet
 
 ## Try it (2 minutes, no wallet needed)
 
@@ -23,9 +23,9 @@ npm install
 npm run demo:loop
 ```
 
-The scripted agent discovers the tool over MCP, gets a `PAYMENT_REQUIRED` challenge, pays (dev-minted payment stands in for the on-chain settlement in this local run), retries, and prints the quote plus the Flow split with an exact conservation check.
+The scripted agent discovers the tool over MCP, gets a `PAYMENT_REQUIRED` challenge, pays (dev-minted payment stands in for the on-chain settlement in this local run), retries, and prints the quote plus the RevRule split with an exact conservation check.
 
-To see the **live** Flow split, get a Rail API key and graph first:
+To see the **live** RevRule split, get a Rail API key and graph first:
 
 ```bash
 # 1. Issue a free Rail key (https://payload-rail.fly.dev)
@@ -59,14 +59,12 @@ Endpoints: `GET /v1/quote?symbol=XYZ` (paid), `GET /.well-known/x402` (agent dis
 | `PORT` | 8080 | HTTP port |
 | `PAY_TO` | dead address | Wallet receiving the USDC (the API's own revenue) |
 | `X402_NETWORK` | `eip155:84532` | Base Sepolia |
-| `X402_ASSET` | `USDC` | Settlement asset |
-| `PRICE` | `0.01` | Per-call price |
 | `X402_VERIFIER` | `dev` | `dev` (HMAC, local/demo) or `facilitator` (real x402 /verify) |
 | `DEV_SECRET` | demo default | HMAC secret for the dev verifier |
 | `FACILITATOR_VERIFY_URL` | `https://x402.org/facilitator/verify` | Production verifier endpoint |
 | `RAIL_BASE_URL` | `https://payload-rail.fly.dev` | Payload Rail |
-| `RAIL_API_KEY` | — | Server-side only. Never exposed to clients. |
-| `RAIL_GRAPH_ID` | — | Demo Revenue Graph id |
+| `RAIL_API_KEY` | - | Server-side only. Never exposed to clients. |
+| `RAIL_GRAPH_ID` | - | Demo Revenue Graph id |
 | `PUBLIC_BASE_URL` | `http://localhost:PORT` | Used in the discovery manifest |
 
 `NODE_ENV=production` with the dev verifier crashes at boot (the kit's own guard).
@@ -82,14 +80,14 @@ Endpoints: `GET /v1/quote?symbol=XYZ` (paid), `GET /.well-known/x402` (agent dis
 ## What this is not
 
 - Not custody: the server only receives its own API revenue via x402. It never holds agent or user funds.
-- Not a payment processor: Flow proposes distributions; your own wallet / Stripe / facilitator executes payouts.
+- Not a payment processor: RevRule proposes distributions; your own wallet / Stripe / facilitator executes payouts.
 - The dev-minted payments in `demo:loop` are clearly labeled simulated settlement. Real runs use real chain transactions.
 
 ## Deploy
 
 Push to `main` deploys to Fly.io via GitHub Actions (same pattern as `Payloadhq/payload-rail`). Two owner steps before the first deploy:
 
-1. Add `.github/workflows/deploy.yml` to the repo (one file — the automation token cannot push workflow files; the file is ready in the build workspace).
+1. Add `.github/workflows/deploy.yml` to the repo (one file - the automation token cannot push workflow files; the file is ready in the build workspace).
 2. Add the `FLY_API_TOKEN` secret in the repo's Settings → Secrets → Actions.
 
 ## Tests
@@ -102,6 +100,9 @@ No live-network tests in CI. The loop test mocks the Rail client; the verifier t
 
 ## Links
 
+- RevRule engine (MIT): https://github.com/Payloadhq/payload-flow
+- Rail quickstart: https://payloadhq.github.io/flow-rail.html
+- Developer portal: https://payloadhq.github.io/
 - Telegram: https://t.me/payloadtool
 - Patreon: https://patreon.com/PayloadTools
 
